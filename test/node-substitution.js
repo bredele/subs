@@ -34,7 +34,7 @@ describe('Simple interpolation', function(){
 
   describe('multiple store attributes', function(){
     it('should substitude node text with multiple values', function(){
-      var dom = domify('<span>{name} love {company}{company}</span>').firstChild;
+      var dom = domify('<span>{name} love {company}</span>').firstChild;
       var store = new Store({
         name : 'bredele',
         company : 'PetroFeed'

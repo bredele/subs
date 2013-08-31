@@ -2,13 +2,13 @@ var interpolation = require('interpolation');
 
 //TODO: add in interpolation component
 //test if expr have unique keys
-function getExprs(text){
-  var props = [];
+function attrs(text){
+  var exprs = [];
   text.replace(/\{([^}]+)\}/g, function(_, expr){
     var value = expr.trim();
-    if(!~props.indexOf(value)) props.push(value);
+    if(!~exprs.indexOf(value)) exprs.push(value);
   });
-  return props;
+  return exprs;
 }
 
 /**
@@ -29,7 +29,7 @@ function Substitution(node, store) { //may be use an adapter
   this.store = store;
   this.text = node.textContent;
 
-  this.exprs = getExprs(this.text);
+  this.exprs = attrs(this.text);
   for(var l = this.exprs.length; l--;){ //TODO: do own each package with a fast loop
     var expr = this.exprs[l];
     if(store.has(expr)){ //NOTE: may be not necessary
