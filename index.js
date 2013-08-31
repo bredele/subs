@@ -39,6 +39,5 @@ function Substitution(node, store) { //may be use an adapter
  */
 
 Substitution.prototype.apply = function() {
-  var node = this.node;
-  node.data = interpolation.text(this.text, this.store);
+  this.node.data = interpolation.text(this.text, this.store);
 };
