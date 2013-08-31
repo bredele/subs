@@ -27,7 +27,8 @@ module.exports = Substitution;
 function Substitution(node, store) { //may be use an adapter
   this.node = node;
   this.store = store;
-  this.text = node.textContent;
+  //cache text template
+  this.text = node.data;
 
   this.exprs = attrs(this.text);
   for(var l = this.exprs.length; l--;){ //TODO: do own each package with a fast loop
@@ -50,5 +51,5 @@ function Substitution(node, store) { //may be use an adapter
 
 Substitution.prototype.apply = function() {
   var node = this.node;
-  node.textContent = interpolation(this.text, this.store);
+  node.data = interpolation(this.text, this.store);
 };

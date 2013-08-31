@@ -6,6 +6,7 @@ var assert = require('assert');
 describe('Simple interpolation', function(){
 
   describe('single store attribute', function(){
+
     var store = null,
         dom = null,
         binding = null;
@@ -33,15 +34,34 @@ describe('Simple interpolation', function(){
   });
 
   describe('multiple store attributes', function(){
-    it('should substitude node text with multiple values', function(){
-      var dom = domify('<span>{name} love {company}</span>').firstChild;
-      var store = new Store({
+
+    var store = null,
+        dom = null,
+        binding = null;
+
+    beforeEach(function(){
+      dom = domify('<span>{name} love {company}</span>').firstChild;
+      store = new Store({
         name : 'bredele',
         company : 'PetroFeed'
       });
-      var binding = new Binding(dom, store);
+      binding = new Binding(dom, store);
+    });
+
+    it('should substitude node text with multiple values', function(){
       assert('bredele love PetroFeed' === dom.textContent);
     });
+
+    it('should substitude node everytime there is a change in the model attributes', function(){
+      assert('bredele love PetroFeed' === dom.textContent);
+      store.set('name', 'olivier');
+      assert('olivier love PetroFeed' === dom.textContent);
+      store.set('company', 'the awesome PetroFeed');
+      assert('olivier love the awesome PetroFeed' === dom.textContent);
+      store.set('twitter', 'bredeleca');
+      assert('olivier love the awesome PetroFeed' === dom.textContent);
+    });
+    
   });
 
 
