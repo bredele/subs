@@ -7,7 +7,6 @@
 
     $ component install bredele/node-substitution
 
-
 ## License
 
   MIT

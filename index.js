@@ -1,16 +1,5 @@
 var interpolation = require('interpolation');
 
-//TODO: add in interpolation component
-//test if expr have unique keys
-function attrs(text){
-  var exprs = [];
-  text.replace(/\{([^}]+)\}/g, function(_, expr){
-    var value = expr.trim();
-    if(!~exprs.indexOf(value)) exprs.push(value);
-  });
-  return exprs;
-}
-
 /**
  * Expose 'node substitution'
  */
@@ -30,10 +19,10 @@ function Substitution(node, store) { //may be use an adapter
   //cache text template
   this.text = node.data;
 
-  this.exprs = attrs(this.text);
+  this.exprs = interpolation.attrs(this.text);
   for(var l = this.exprs.length; l--;){ //TODO: do own each package with a fast loop
     var expr = this.exprs[l];
-    if(store.has(expr)){ //NOTE: may be not necessary
+    if(store.has(expr)){ //NOTE: might be not necessary
       var _this = this;
       store.on('change ' + expr, function(){ //TODO: have emitter with scope
         _this.apply();
@@ -51,5 +40,5 @@ function Substitution(node, store) { //may be use an adapter
 
 Substitution.prototype.apply = function() {
   var node = this.node;
-  node.data = interpolation(this.text, this.store);
+  node.data = interpolation.text(this.text, this.store);
 };
