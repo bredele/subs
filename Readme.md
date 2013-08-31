@@ -7,9 +7,6 @@
 
     $ component install bredele/node-substitution
 
-## API
-
-   
 
 ## License
 
