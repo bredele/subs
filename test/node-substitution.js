@@ -20,15 +20,15 @@ describe('Simple interpolation', function(){
     });
 
     it('shoud substitude node text content with a single value', function(){
-      assert('bredele' === dom.textContent);
+      assert('bredele' === dom.data);
     });
 
     it('should substitute node everytime there is a change in the model attribute', function(){
-      assert('bredele' === dom.textContent);
+      assert('bredele' === dom.data);
       store.set('name', 'Olivier');
-      assert('Olivier' === dom.textContent);
+      assert('Olivier' === dom.data);
       store.set('name', 'Nicolas');
-      assert('Nicolas' === dom.textContent);
+      assert('Nicolas' === dom.data);
     });
 
   });
@@ -49,17 +49,17 @@ describe('Simple interpolation', function(){
     });
 
     it('should substitude node text with multiple values', function(){
-      assert('bredele love PetroFeed' === dom.textContent);
+      assert('bredele love PetroFeed' === dom.data);
     });
 
     it('should substitude node everytime there is a change in the model attributes', function(){
-      assert('bredele love PetroFeed' === dom.textContent);
+      assert('bredele love PetroFeed' === dom.data);
       store.set('name', 'olivier');
-      assert('olivier love PetroFeed' === dom.textContent);
+      assert('olivier love PetroFeed' === dom.data);
       store.set('company', 'the awesome PetroFeed');
-      assert('olivier love the awesome PetroFeed' === dom.textContent);
+      assert('olivier love the awesome PetroFeed' === dom.data);
       store.set('twitter', 'bredeleca');
-      assert('olivier love the awesome PetroFeed' === dom.textContent);
+      assert('olivier love the awesome PetroFeed' === dom.data);
     });
     
   });
