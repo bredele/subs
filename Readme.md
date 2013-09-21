@@ -1,11 +1,10 @@
-
 # node-substitution
 
   Text node substitution
 
 ## Installation
 
-    $ component install bredele/node-substitution
+    $ component install leafs/node-substitution
 
 ## License
 
