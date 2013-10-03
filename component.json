@@ -6,8 +6,8 @@
   "keywords": [],
   "dependencies": {
     "component/assert": "*",
-    "bredele/interpolation": "*",
-    "bredele/store": "*",
+    "leafs/interpolation": "*",
+    "leafs/store": "*",
     "component/domify": "*"
   },
   "development": {},
