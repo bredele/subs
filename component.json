@@ -1,13 +1,13 @@
 {
   "name": "node-substitution",
-  "repo": "leafs/node-substitution",
+  "repo": "bredele/node-substitution",
   "description": "Text node substitution",
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
     "component/assert": "*",
-    "leafs/interpolation": "*",
-    "leafs/store": "*",
+    "bredele/interpolation": "*",
+    "bredele/store": "*",
     "component/domify": "*"
   },
   "development": {},
