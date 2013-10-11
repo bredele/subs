@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/leafs/node-substitution.git"
+    "url": "git://github.com/bredele/node-substitution.git"
   },
   "keywords": [
     "text",
@@ -24,6 +24,6 @@
   "license": "BSD",
   "readmeFilename": "Readme.md",
   "bugs": {
-    "url": "https://github.com/leafs/node-substitution/issues"
+    "url": "https://github.com/bredele/node-substitution/issues"
   }
 }
