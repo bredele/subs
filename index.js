@@ -2,41 +2,23 @@ var supplant = require('supplant');
 
 
 /**
- * Expose 'Subs'
- */
-
-module.exports = Substitution;
-
-
-/**
  * Node text substitution constructor.
- * @param {HTMLElement} node  type 3
+ * @param {HTMLElement} node type 3
  * @param {Store} store 
  */
 
-function Substitution(node, store) { //may be use an adapter
-  this.node = node;
-  this.store = store;
-  //cache text template
-  this.text = node.nodeValue;
-
-  this.exprs = supplant.attrs(this.text);
-  for(var l = this.exprs.length; l--;) {
-    var expr = this.exprs[l];
-    var _this = this;
-    store.on('change ' + expr, function(){
-      _this.apply();
+module.exports = function(node, store) { //may be use an adapter
+  var text = node.nodeValue,
+      exprs = supplant.attrs(text);
+  for(var l = exprs.length; l--;) {
+    store.on('change ' + exprs[l], function() {
+      replace(node, text, store);
     });
   }
-  this.apply();
+  replace(node, text, store);
 }
 
 
-/**
- * Replace text content with store values.
- * @api public
- */
-
-Substitution.prototype.apply = function() {
-  this.node.nodeValue = supplant(this.text, this.store);
-};
+function replace(node, text, obj) {
+  node.nodeValue = supplant(text, obj);
+}
