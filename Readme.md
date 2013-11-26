@@ -1,10 +1,10 @@
-# node-substitution
+# Subs
 
-  Text node substitution
+  Text node substitution.
 
 ## Installation
 
-    $ component install leafs/node-substitution
+    $ component install bredele/subs
 
 ## License
 
