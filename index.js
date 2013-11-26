@@ -1,25 +1,19 @@
-var interpolation = require('interpolation');
-
-/**
- * Expose 'node substitution'
- */
-
-module.exports = Substitution;
+var supplant = require('supplant');
 
 
 /**
- * Node substitution constructor.
+ * Node text substitution constructor.
  * @param {HTMLElement} node  type 3
  * @param {Store} store 
  */
 
-function Substitution(node, store) { //may be use an adapter
+module.exports = function Substitution(node, store) { //may be use an adapter
   this.node = node;
   this.store = store;
   //cache text template
   this.text = node.nodeValue;
 
-  this.exprs = interpolation.attrs(this.text);
+  this.exprs = supplant.attrs(this.text);
   for(var l = this.exprs.length; l--;){ //TODO: do own each package with a fast loop
     var expr = this.exprs[l];
     var _this = this;
@@ -28,7 +22,7 @@ function Substitution(node, store) { //may be use an adapter
     });
   }
   this.apply();
-}
+};
 
 
 /**
@@ -37,5 +31,5 @@ function Substitution(node, store) { //may be use an adapter
  */
 
 Substitution.prototype.apply = function() {
-  this.node.nodeValue = interpolation.text(this.text, this.store);
+  this.node.nodeValue = supplant(this.text, this.store);
 };
