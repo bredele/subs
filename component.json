@@ -1,16 +1,17 @@
 {
-  "name": "node-substitution",
-  "repo": "bredele/node-substitution",
+  "name": "subs",
+  "repo": "bredele/subs",
   "description": "Text node substitution",
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
+    "bredele/supplant": "*"
+  },
+  "development": {
     "component/assert": "*",
-    "bredele/interpolation": "*",
     "bredele/store": "*",
     "component/domify": "*"
   },
-  "development": {},
   "license": "MIT",
   "main": "index.js",
   "scripts": [
