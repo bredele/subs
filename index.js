@@ -3,7 +3,6 @@ var supplant = require('supplant');
 
 /**
  * Expose 'Subs'
- * @type {[type]}
  */
 
 module.exports = Substitution;
@@ -25,7 +24,7 @@ function Substitution(node, store) { //may be use an adapter
   for(var l = this.exprs.length; l--;) {
     var expr = this.exprs[l];
     var _this = this;
-    store.on('change ' + expr, function(){ //TODO: have emitter with scope
+    store.on('change ' + expr, function(){
       _this.apply();
     });
   }
