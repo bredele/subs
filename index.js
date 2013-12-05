@@ -16,7 +16,7 @@ module.exports = function(node, store) { //may be use an adapter
     });
   }
   replace(node, text, store);
-}
+};
 
 
 function replace(node, text, obj) {
