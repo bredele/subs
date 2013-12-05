@@ -11,6 +11,9 @@ module.exports = function(node, store) { //may be use an adapter
   var text = node.nodeValue,
       exprs = supplant.attrs(text);
   for(var l = exprs.length; l--;) {
+  	// var expr = exprs[l];
+  	// if(expr[0] === '{') {		
+
     store.on('change ' + exprs[l], function() {
       replace(node, text, store);
     });
