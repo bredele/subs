@@ -9,17 +9,14 @@ var supplant = require('supplant');
 
 module.exports = function(node, store) {
   var text = node.nodeValue,
-      exprs = supplant.attrs(text);
+      exprs = supplant.attrs(text),
+      handle = function() {
+        node.nodeValue = supplant(text, store);
+      };
+
   for(var l = exprs.length; l--;) {
     //when destroy binding, we should do off store
-    store.on('change ' + exprs[l], function() {
-      replace(node, text, store);
-    });
+    store.on('change ' + exprs[l], handle);
   }
-  replace(node, text, store);
+  handle();
 };
-
-
-function replace(node, text, obj) {
-  node.nodeValue = supplant(text, obj);
-}
