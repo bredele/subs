@@ -1,4 +1,6 @@
-var supplant = require('supplant');
+var supplant = require('supplant'), //don't use supplant for attributes (remove attrs)
+    indexOf = require('indexof'),
+    props = require('props');
 
 
 /**
@@ -9,7 +11,7 @@ var supplant = require('supplant');
 
 module.exports = function(node, store) {
   var text = node.nodeValue,
-      exprs = supplant.attrs(text),
+      exprs = getProps(text),
       handle = function() {
         node.nodeValue = supplant(text, store);
       };
@@ -20,3 +22,15 @@ module.exports = function(node, store) {
   }
   handle();
 };
+
+
+function getProps(text) {
+  var exprs = [];
+  
+  //is while and test faster?
+  text.replace(/\{([^}]+)\}/g, function(_, expr){
+    if(!~indexOf(exprs, expr)) exprs = exprs.concat(props(expr));
+  });
+
+  return exprs;
+}
